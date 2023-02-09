@@ -35,11 +35,11 @@ export default function Student() {
     <div style={{ padding: "15px" }}>
       <h1 style={{ textAlign: "center" }}>List of students</h1>
       <Button
-        variant='info'
-        style={{ float: "right", borderRadius: "20px" }}
-        onClick={handleShow}
+        variant='success'
+        style={{ float: "right", }}
+        onClick={handleShow} className=" btn-rounded"
       >
-        Add marks
+        Marks  <i class="fa-sharp fa-solid fa-address-card"></i>
       </Button>
       <Table striped bordered hover>
         <thead>

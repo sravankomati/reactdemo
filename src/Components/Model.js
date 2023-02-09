@@ -66,24 +66,36 @@ const Model = ({ show, handleClose }) => {
           {formFields.map((form, index) => {
             return (
               <div key={index} style={{ marginBottom: "20px" }}>
-                <input
-                  name='name'
-                  placeholder='Name'
-                  onChange={(event) => handleFormChange(event, index)}
-                  value={form.name}
-                />
-                <input
-                  name='marks'
-                  placeholder='marks'
-                  type={"number"}
-                  onChange={(event) => handleFormChange(event, index)}
-                  value={form.marks}
-                />
-                {index == 0 ? (
-                  <button onClick={addFields}>Add</button>
-                ) : (
-                  <button onClick={() => removeFields(index)}>Remove</button>
-                )}
+                <div className=''>
+                  <div className='row'>
+                    <div className='col'>
+                      <input
+                        name='name'
+                        placeholder='Name'
+                        onChange={(event) => handleFormChange(event, index)}
+                        value={form.name}
+                      />
+                    </div>
+                    <div className='col'>
+                      <input
+                        name='marks'
+                        placeholder='marks'
+                        type={"number"}
+                        onChange={(event) => handleFormChange(event, index)}
+                        value={form.marks}
+                      />
+                    </div>
+                    <div className='col' style={{marginTop:"-8px"}}>
+                      {index == 0 ? (
+                        <button onClick={addFields} className='btn btn-success'>
+                          <i class='fa-solid fa-plus'></i>
+                        </button>
+                      ) : (
+                        <button onClick={() => removeFields(index)} className='btn btn-danger'><i class='fa-solid fa-minus'></i></button>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}
