@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import CanvasJSReact from "../canvasjs.react";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -135,23 +135,60 @@ export default function Dashboard() {
       //   console.log(data);
     }
   };
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className='m-3'>
-      <Button variant='outline-primary' onClick={showHighScore}>
+      <Button
+        variant='outline-primary'
+        onClick={() => {
+          showHighScore().then(handleShow());
+        }}
+      >
         Show Students who score high
       </Button>{" "}
-      <Button variant='outline-secondary' onClick={showHighScoreSub}>
+      <Button
+        variant='outline-secondary'
+        onClick={() => {
+          showHighScoreSub().then(handleShow());
+        }}
+      >
         Show students high score each subject
       </Button>{" "}
-      <Button variant='outline-success' onClick={showMarksBtw}>
+      <Button
+        variant='outline-success'
+        onClick={() => {
+          showMarksBtw().then(handleShow());
+        }}
+      >
         show students who score marks in Maths{" "}
       </Button>{" "}
-      <Button variant='outline-warning' onClick={ShowMyReport}>
+      <Button
+        variant='outline-warning'
+        onClick={() => {
+          ShowMyReport().then(handleShow());
+        }}
+      >
         Get Your Report
       </Button>{" "}
-      <div className='m-4'>
-        <CanvasJSChart options={data} />
-      </div>
+      <div className='m-4'>{/* <CanvasJSChart options={data} /> */}</div>
+      {/* <Button variant="primary" onClick={handleShow}>
+        Launch static backdrop modal
+      </Button> */}
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop='static'
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+          <CanvasJSChart options={data} />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
